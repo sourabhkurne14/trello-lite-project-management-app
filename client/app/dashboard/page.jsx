@@ -23,7 +23,7 @@ export default function Dashboard() {
             const token = localStorage.getItem('token');
 
             try {
-                const res = await fetch('http://localhost:5000/api/boards', {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/boards`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -31,13 +31,13 @@ export default function Dashboard() {
                 });
 
                 const data = await res.json();
-                console.log('Response status:', res.status);
-                console.log('Response data:', data);
+                // console.log('Response status:', res.status);
+                // console.log('Response data:', data);
 
                 if (!res.ok) {
                     setError(data.message || 'Failed to fetch boards!');
                 } else {
-                    console.log('Fetched boards:', data);
+                    // console.log('Fetched boards:', data);
 
                     setBoards(data);
                 }

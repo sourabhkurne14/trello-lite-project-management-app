@@ -40,13 +40,13 @@ export default function BoardDetailsPage() {
         const fetchBoardAndLists = async () => {
             try {
                 const [boardRes, listRes] = await Promise.all([
-                    fetch(`http://localhost:5000/api/boards/${boardId}`, {
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/boards/${boardId}`, {
                         method: 'GET',
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     }),
-                    fetch(`http://localhost:5000/api/lists/board/${boardId}`, {
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/lists/board/${boardId}`, {
                         method: 'GET',
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -68,15 +68,15 @@ export default function BoardDetailsPage() {
 
                 const isAdmin = boardData.owner._id === userId ||
                     boardData.members?.some((m) => m.user._id === userId && m.role === 'admin');
-                console.log("User ID for checking:", userId);
-                console.log("Board owner Id:", boardData.owner);
-                console.log("Members:", boardData.members);
+                // console.log("User ID for checking:", userId);
+                // console.log("Board owner Id:", boardData.owner);
+                // console.log("Members:", boardData.members);
 
 
-                console.log("Is current user admin:", isAdmin);
+                // console.log("Is current user admin:", isAdmin);
 
                 setCurrentUserIsAdmin(isAdmin);
-                console.log("Is current user admin:", isAdmin);
+                // console.log("Is current user admin:", isAdmin);
 
 
             } catch (err) {
@@ -93,7 +93,7 @@ export default function BoardDetailsPage() {
 
         try {
             const token = user.token;
-            const res = await fetch('http://localhost:5000/api/lists', {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lists`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export default function BoardDetailsPage() {
 
         try {
             const token = user.token;
-            const res = await fetch('http://localhost:5000/api/tasks', {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ export default function BoardDetailsPage() {
 
     const updateRole = async (memberId, newRole) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/boards/${boardId}/members/${memberId}/role`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/boards/${boardId}/members/${memberId}/role`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ export default function BoardDetailsPage() {
                 return list;
             });
 
-            await fetch(`http://localhost:5000/api/tasks/${taskId}/move`,{
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}/move`,{
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ export default function BoardDetailsPage() {
 
             if(!res.ok) throw new Error('Failed to move task');
 
-            const updatedRes = await fetch(`http://localhost:5000/api/lists/board/${boardId}`,{
+            const updatedRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lists/board/${boardId}`,{
                 headers: {
                     Authorization: `Bearer ${user?.token}`
                 }
@@ -232,7 +232,7 @@ export default function BoardDetailsPage() {
         if(!confirm("Are you sure you want to delete this board? This action cannot be undone")) return;
 
         try{
-            const res = await fetch(`http://localhost:5000/api/boards/${boardId}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/boards/${boardId}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -252,7 +252,7 @@ export default function BoardDetailsPage() {
 
     const handleDeleteTask = async (taskId) => {
         try{
-            const res = await fetch(`http://localhost:5000/api/tasks/${taskId}`,{
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`,{
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${user?.token}`
@@ -264,7 +264,7 @@ export default function BoardDetailsPage() {
                 throw new Error(data.message || 'Failed to delete task')
             }
 
-            const updateRes = await fetch(`http://localhost:5000/api/lists/board/${boardId}`,{
+            const updateRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lists/board/${boardId}`,{
                 headers: {
                     Authorization: `Bearer ${user?.token}`
                 }
@@ -281,7 +281,7 @@ export default function BoardDetailsPage() {
         if(!confirm('Are you sure want to delete this list?')) return;
 
         try{
-            const res = await fetch(`http://localhost:5000/api/lists/${listId}`,{
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lists/${listId}`,{
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${user.token}`

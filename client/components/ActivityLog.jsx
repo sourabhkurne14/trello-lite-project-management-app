@@ -8,14 +8,14 @@ const ActivityLog = ({boardId}) => {
     useEffect(() => {
         const fetchLogs = async () => {
             try{
-                const res = await fetch(`http://localhost:5000/api/activity-logs/${boardId}`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity-logs/${boardId}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
                 const data = await res.json();
                 setLogs(data);
-                console.log(logs);
+                // console.log(logs);
 
             }catch(err){
                 console.error('Error fetching logs:', err);

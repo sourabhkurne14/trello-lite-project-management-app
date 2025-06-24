@@ -19,7 +19,7 @@ export default function CreateBoardPage() {
             return;
         }
 
-        const res = await fetch('http://localhost:5000/api/boards', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/boards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

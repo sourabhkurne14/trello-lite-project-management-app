@@ -9,7 +9,7 @@ const AddMemberForm = ({boardId, token, members, currentUserIsAdmin}) => {
 
     const handleAddMember = async () => {
         try{
-            const res = await axios.post(`http://localhost:5000/api/boards/${boardId}/members`,
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/boards/${boardId}/members`,
                 {email, role},
                 {
                     headers: {
