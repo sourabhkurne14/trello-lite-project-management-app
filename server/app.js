@@ -9,7 +9,14 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+
+app.use(cors({
+  origin: ['https://trello-lite-project-management-app.vercel.app'],
+  credentials: true
+}));
+
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
