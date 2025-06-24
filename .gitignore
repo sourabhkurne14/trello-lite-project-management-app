@@ -1,0 +1,9 @@
+# Ignore node_modules and other unnecessary files
+node_modules/
+.next/
+.env
+dist/
+build/
+coverage/
+.DS_Store
+*.log
