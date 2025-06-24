@@ -51,7 +51,7 @@ Trello-lite Project Management App/
 ## Steps to run the project
 
 ### 1. Clone the repository:
-git clone https://github.com/sourabhkurne14/Trello-lite-App.git
+git clone https://github.com/sourabhkurne14/trello-lite-project-management-app
 cd Trello-lite-App
 
 ### 2. Setup Backend
