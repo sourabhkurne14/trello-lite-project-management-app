@@ -8,7 +8,7 @@ A full-stack **Trello-lite project management App** built with:
 
 ## Live Demo 🌐
 Check out the live project here:
-Visit: [https://to-do-app-xi-ashen-93.vercel.app/] (https://to-do-app-xi-ashen-93.vercel.app/)
+Visit: [Trello-lite Project Management App](https://trello-lite-project-management-app.vercel.app/)
 
 Built with Next.js, Tailwind CSS, Express.js, and MongoDB – fully deployed using Vercel (frontend) and Render (backend).
 
